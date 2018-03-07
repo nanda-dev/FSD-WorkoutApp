@@ -1,18 +1,21 @@
 <div>
 	<div>
-		<nav class='navbar navbar-expand-sm bg-light'>
-			<div class='container-fluid'>
-				<a class='navbar-brand' >{{pageTitle}}</a>
-				<ul class='navbar-nav'>
+		<nav class='navbar navbar-expand-sm bg-light'> 
+			<!-- navbar navbar-expand-md navbar-dark bg-dark -->
+			<!-- navbar navbar-expand-sm bg-light -->
+			<div class='container'>
+				<a class='navbar-brand' [routerLink]="['/welcome']">{{pageTitle}}</a>
+				<ul class='navbar-nav mr-auto' >
 					<!--<li><a [routerLink]="['/workouts']">My Workouts</a></li>-->
-					<li class="nav-item"><a class="nav-link" href="#">My Workouts</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Add Workout</a></li>
+					<li class="nav-item"><a class="nav-link" [routerLink]="['/workouts']">My Workouts</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Track Workout</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">BurnOut Chart</a></li>
 				</ul>
 			</div>
 		</nav>
 	</div>
 	<div class='container'>
-		<!--<router-outlet></router-outlet>-->
+		<router-outlet></router-outlet>
 	</div>
 </div>
+

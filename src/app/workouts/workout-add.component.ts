@@ -2,18 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-welcome',
-  templateUrl: './welcome.component.html',
-  styleUrls: ['./welcome.component.css']
+  selector: 'app-workout-add',
+  templateUrl: './workout-add.component.html',
+  styleUrls: ['./workout-add.component.css']
 })
-export class WelcomeComponent implements OnInit {
+export class WorkoutAddComponent implements OnInit {
 
   constructor(private _router: Router) { }
 
   ngOnInit() {
   }
 
-  loginUser(): void {
+  addWorkout(): void {
     this._router.navigate(['/workouts']);
   }
+
 }
