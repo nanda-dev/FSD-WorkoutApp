@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "title": "Squat",
+        "calsBurnt": 5,
+        "unit": "minutes",
+        "userId": 1
+    },
+    {
+        "id": 1,
+        "title": "Bench Press",
+        "calsBurnt": 60,
+        "unit": "hours",
+        "userId": 1
+    }
+]

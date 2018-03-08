@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./workout-track.component.css']
 })
 export class WorkoutTrackComponent implements OnInit {
-
+  workoutName: string = "Bench Press";
+  
   constructor(private _route: Router) { }
 
   ngOnInit() {

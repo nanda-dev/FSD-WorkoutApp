@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "workoutId": 1,
+        "startTime": "2018-03-07T10:00.00Z",
+        "endTime": "2018-03-07T11:00.00Z",
+        "duration": 360,
+        "calsBurnt": 60
+    },
+    {
+        "id": 1,
+        "workoutId": 1,
+        "startTime": "2018-03-08T10:00.00Z",
+        "endTime": "2018-03-08T11:00.00Z",
+        "duration": 360,
+        "calsBurnt": 60
+    }
+]

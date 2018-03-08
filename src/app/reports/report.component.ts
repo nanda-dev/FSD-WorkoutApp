@@ -14,6 +14,6 @@ export class ReportComponent implements OnInit {
   }
 
   showReport(): void {
-    this._router.navigate(['/workouts']);
+    this._router.navigate(['/report']);
   }
 }

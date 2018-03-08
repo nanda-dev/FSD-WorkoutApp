@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./workout-list.component.css']
 })
 export class WorkoutListComponent implements OnInit {
+  
 
   constructor(private _router: Router) { }
 
@@ -15,6 +16,10 @@ export class WorkoutListComponent implements OnInit {
 
   addNewWorkout(): void {
     this._router.navigate(['/addworkout']);
+  }
+
+  trackWorkout(): void {
+    this._router.navigate(['/transactions']);
   }
 
 }

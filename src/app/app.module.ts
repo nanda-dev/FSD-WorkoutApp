@@ -1,7 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+//ngModel - two way data binding
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -10,6 +15,7 @@ import { WorkoutAddComponent } from './workouts/workout-add.component';
 import { UserRegisterComponent } from './user/user-register.component';
 import { WorkoutTrackComponent } from './workouts/workout-track.component';
 import { ReportComponent } from './reports/report.component';
+import { WorkoutListTransactionsComponent } from './workouts/workout-list-transactions.component';
 
 
 @NgModule({
@@ -20,7 +26,8 @@ import { ReportComponent } from './reports/report.component';
     WorkoutAddComponent,
     UserRegisterComponent,
     WorkoutTrackComponent,
-    ReportComponent
+    ReportComponent,
+    WorkoutListTransactionsComponent
 
   ],
   imports: [
@@ -30,11 +37,14 @@ import { ReportComponent } from './reports/report.component';
       {path: 'signup', component: UserRegisterComponent},
       {path: 'workouts', component: WorkoutListComponent},
       {path: 'addworkout', component: WorkoutAddComponent},
+      {path: 'transactions', component: WorkoutListTransactionsComponent},
       {path: 'track', component: WorkoutTrackComponent},
       {path: 'report', component: ReportComponent},
       {path: '', redirectTo: 'welcome', pathMatch: 'full'},
       {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
-    ])
+    ]),
+    BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
