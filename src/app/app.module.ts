@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
-import { WorkoutComponent } from './workouts/workout.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { WorkoutListComponent } from './workouts/workout-list.component';
 import { WorkoutAddComponent } from './workouts/workout-add.component';
@@ -16,7 +15,6 @@ import { ReportComponent } from './reports/report.component';
 @NgModule({
   declarations: [
     AppComponent,
-    WorkoutComponent,
     WelcomeComponent,
     WorkoutListComponent,
     WorkoutAddComponent,
