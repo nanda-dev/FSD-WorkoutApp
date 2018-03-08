@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
@@ -16,6 +18,7 @@ import { UserRegisterComponent } from './user/user-register.component';
 import { WorkoutTrackComponent } from './workouts/workout-track.component';
 import { ReportComponent } from './reports/report.component';
 import { WorkoutListTransactionsComponent } from './workouts/workout-list-transactions.component';
+import { WorkoutService } from './workouts/workout.service';
 
 
 @NgModule({
@@ -32,12 +35,15 @@ import { WorkoutListTransactionsComponent } from './workouts/workout-list-transa
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {path: 'welcome', component: WelcomeComponent},
       {path: 'signup', component: UserRegisterComponent},
       {path: 'workouts', component: WorkoutListComponent},
       {path: 'addworkout', component: WorkoutAddComponent},
-      {path: 'transactions', component: WorkoutListTransactionsComponent},
+      {path: 'transactions/:id', component: WorkoutListTransactionsComponent},
       {path: 'track', component: WorkoutTrackComponent},
       {path: 'report', component: ReportComponent},
       {path: '', redirectTo: 'welcome', pathMatch: 'full'},
@@ -46,7 +52,7 @@ import { WorkoutListTransactionsComponent } from './workouts/workout-list-transa
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot()
   ],
-  providers: [],
+  providers: [WorkoutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

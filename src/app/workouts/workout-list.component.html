@@ -13,17 +13,18 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor='let workout of workouts'>
                 <th scope="row">
-                  <button type="button" class="btn btn-link" (click)='trackWorkout()'>
-                    Bench Press
+                  <!--<button type="button" class="btn btn-link" (click)='trackWorkout(workout.id)'>-->
+                  <button type="button" class="btn btn-link" [routerLink]="['/transactions', workout.id]">
+                    {{workout.title}}
                   </button>
 
                 </th>
-                <td>60</td>
-                <td>HOUR</td>
+                <td>{{workout.calsBurnt}}</td>
+                <td>{{workout.unit}}</td>
               </tr>
-              <tr>
+              <!--<tr>
                 <th scope="row">
                   <button type="button" class="btn btn-link" (click)='trackWorkout()'>
                     Squat
@@ -31,7 +32,7 @@
                 </th>
                 <td>5</td>
                 <td>MINUTE</td>
-              </tr>
+              </tr>-->
               <tr>
                 <td></td>
                 <td></td>
