@@ -16,4 +16,7 @@ export class WelcomeComponent implements OnInit {
   loginUser(): void {
     this._router.navigate(['/workouts']);
   }
+  signup(): void {
+    this._router.navigate(['/signup']);
+  }
 }

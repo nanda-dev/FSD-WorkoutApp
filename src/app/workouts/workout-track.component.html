@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <h5 class="card-header">Track Workout</h5>
+      <div class="card-body">
+        <form>
+          
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="selectWorkout">Workout</label>
+              </div>
+              <select class="custom-select" id="selectWorkout">
+                <option selected>Choose...</option>
+                <option value="1001">Squat</option>
+                <option value="1002">Press</option>
+                <option value="1003">Row</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="startTime">Start Time</label>
+            <input type="text" class="form-control" id="startTime">            
+          </div>
+          
+          <div class="form-group">
+            <label for="endTime">End Time</label>
+            <input type="text" class="form-control" id="endTime">            
+          </div>
+
+        </form>
+        <button class="btn btn-outline-primary"  class="btn btn-primary" (click)='trackWorkout()'>Save</button>
+      </div>
+    </div>
+  </div>
+</div>
