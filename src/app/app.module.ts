@@ -8,6 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
+import { DatePipe } from '@angular/common';
+
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
@@ -24,6 +26,7 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
 import { UserService } from './shared/user.service';
 import { BaseUrlService } from './shared/base-url.service';
+import { ConvertFromSecondsPipe } from './shared/convert-from-seconds.pipe';
 
 
 @NgModule({
@@ -36,7 +39,8 @@ import { BaseUrlService } from './shared/base-url.service';
     WorkoutTrackComponent,
     ReportComponent,
     WorkoutListTransactionsComponent,
-    LoginComponent
+    LoginComponent,
+    ConvertFromSecondsPipe
 
   ],
   imports: [
@@ -59,7 +63,7 @@ import { BaseUrlService } from './shared/base-url.service';
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot()
   ],
-  providers: [WorkoutService, LoginService, UserService, BaseUrlService],
+  providers: [WorkoutService, LoginService, UserService, BaseUrlService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

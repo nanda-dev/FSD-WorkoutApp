@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { WorkoutService } from './workout.service';
+import { IWorkoutTransaction } from './IWorkoutTransaction';
 
 
 @Component({
@@ -12,6 +13,8 @@ export class WorkoutListTransactionsComponent implements OnInit {
   
   workoutName: string = "";
   workoutId: number;
+  transactions: IWorkoutTransaction[];
+  errorMessage: string;
 
   constructor(private _router: Router,
               private _route: ActivatedRoute,
@@ -23,7 +26,10 @@ export class WorkoutListTransactionsComponent implements OnInit {
   ngOnInit() {
     this._route.params.subscribe(params => {
       this.workoutId = +params['id'];
-      this.getWorkout(this.workoutId);
+      this.workoutSvc.getWorkoutTransactions(this.workoutId).subscribe(
+        transactions => this.transactions = transactions,
+        error => this.errorMessage = <any>error
+      );
     });
 
     this.workoutName = this.workoutSvc.getWorkoutName(this.workoutId);

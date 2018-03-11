@@ -3,13 +3,13 @@
     <div class="card">
       <h5 class="card-header">My Burn-Out Report</h5>
       <div class="card-body">
-        <form>
+        <form [formGroup]="reportForm" (ngSubmit)='getReport()'>
 
           <div class="form-group row">
             <label for="dateRange" class="col-form-label">Select Dates</label>
-            <input type="text" class="form-control col-md-6" placeholder="Date Range" bsDaterangepicker formControlName="dateRange" id="dateRange"
-            />
-            <button class="btn btn-outline-primary" (click)='showReport()'>Get Report</button>
+            <input type="text" class="form-control col-md-6" placeholder="Date Range" 
+              bsDaterangepicker formControlName="dateRange" id="dateRange"/>
+            <button class="btn btn-outline-primary" >Get Report</button>
           </div>
 
         </form>
@@ -29,20 +29,20 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">2018-03-08</th>
-                        <td>10:00:00</td>
-                        <td>11:00:00</td>
-                        <td>60</td>
-                        <td>60</td>
+                      <tr *ngFor='let t of transactionsReport'>
+                        <th scope="row">{{t.startTime | date:'yyyy-MM-dd'}}</th>
+                        <td>{{t.startTime | date:'HH:mm:ss'}}</td>
+                        <td>{{t.endTime | date:'HH:mm:ss'}}</td>
+                        <td>{{t.duration | convertFromSec:'M'}}</td>
+                        <td>{{t.calsBurnt}}</td>
                       </tr>
-                      <tr>
+                      <!--<tr>
                         <th scope="row">2018-03-07</th>
                         <td>10:00:00</td>
                         <td>11:00:00</td>
                         <td>60</td>
                         <td>60</td>
-                      </tr>
+                      </tr>-->
                     </tbody>
                   </table>
 

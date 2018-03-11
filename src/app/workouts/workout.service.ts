@@ -6,18 +6,23 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { BaseUrlService } from '../shared/base-url.service';
+import { IWorkoutTransaction } from './IWorkoutTransaction';
 
 @Injectable()
 export class WorkoutService {
   
   //private workoutUrl: string = "./api/workouts.json";//Mock JSON for Testing
   private workoutUrl: string;
+  private workoutTxnUrl: string;
+  private workoutTxnReportUrl: string;
 
   workoutMap: any = {};
 
   constructor(private http: Http,
               private baseUrlSvc: BaseUrlService) { 
     this.workoutUrl = this.baseUrlSvc.getBaseUrl() + "workout";
+    this.workoutTxnUrl = this.baseUrlSvc.getBaseUrl() + "wktxn";
+    this.workoutTxnReportUrl = this.baseUrlSvc.getBaseUrl() + "wktxn/report";
   }
 
   getWorkoutsOfUser(userId: number): Observable<IWorkout[]> {
@@ -33,6 +38,25 @@ export class WorkoutService {
         console.log("workoutMap=" + JSON.stringify(this.workoutMap));
       })      
       .catch(this.handleError);                      
+  }
+
+  getWorkoutTransactions(workoutId: number): Observable<IWorkoutTransaction[]>{
+    let url = this.workoutTxnUrl + `/${workoutId}`;
+    return this.http.get(url)
+      .map((resp: Response) => <IWorkoutTransaction[]>resp.json())
+      .do(data => console.log("GetTransactionsAPI resp:" + JSON.stringify(data)))
+      .catch(this.handleError);    
+  }
+
+  getWorkoutTransactionsReport(req: any): Observable<IWorkoutTransaction[]>{
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    
+    console.log("Sending Workout Report Req: " + JSON.stringify(req));
+    return this.http.post(this.workoutTxnReportUrl, req, options)
+            .map(this.extractData)
+            .do(data => console.log('retrievedReport: ' + JSON.stringify(data)))
+            .catch(this.handleError); 
   }
 
   getWorkout(workoutId: number): Observable<IWorkout> {
