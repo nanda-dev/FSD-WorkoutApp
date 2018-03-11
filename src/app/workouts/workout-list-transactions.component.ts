@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { WorkoutService } from './workout.service';
 
 
 @Component({
@@ -13,7 +14,8 @@ export class WorkoutListTransactionsComponent implements OnInit {
   workoutId: number;
 
   constructor(private _router: Router,
-              private _route: ActivatedRoute) { 
+              private _route: ActivatedRoute,
+              private workoutSvc: WorkoutService) { 
     
     //this.workoutId = this._route.snapshot.params['id'];
   }
@@ -24,6 +26,7 @@ export class WorkoutListTransactionsComponent implements OnInit {
       this.getWorkout(this.workoutId);
     });
 
+    this.workoutName = this.workoutSvc.getWorkoutName(this.workoutId);
     
   }
 

@@ -21,11 +21,18 @@ export class WorkoutListComponent implements OnInit {
   ngOnInit() {
     console.log("User Logged in ? " + this.userSvc.isSessionActive());
     console.log("Current User: " + JSON.stringify(this.userSvc.getLoggedInUser()));
-    if(1){}
-    this.workoutSvc.getWorkoutsOfUser(1).subscribe(
-      workouts => this.workouts = workouts,
-      error => this.errorMessage = <any>error
-    );
+    if(this.userSvc.isSessionActive()){
+      let u = this.userSvc.getLoggedInUser();
+      if(u){
+        console.log("Fetch workouts of user: " + u.id);
+        this.workoutSvc.getWorkoutsOfUser(u.id).subscribe(
+          workouts => this.workouts = workouts,
+          error => this.errorMessage = <any>error
+        );
+      }
+      
+    }
+    
   }
 
   addNewWorkout(): void {
