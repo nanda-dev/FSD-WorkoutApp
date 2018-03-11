@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { LoginUser } from './login-user';
+
+import { LoginService } from '../login/login.service';
+
 
 @Component({
   selector: 'app-welcome',
@@ -9,24 +11,16 @@ import { LoginUser } from './login-user';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
+  showLogin: boolean = false;  
 
-  loginForm: FormGroup;
-  loginUser: LoginUser;
-
-  constructor(private _router: Router,
-              private fb: FormBuilder) { }
+  constructor(private loginSvc: LoginService) { }
 
   ngOnInit() {
-     this.loginForm = this.fb.group({
-      userName: ['', [Validators.required, Validators.minLength(3)]],
-      password: ''
-    });
+    console.log("LoginComponent - show Login on init = " + this.showLogin);
+    this.showLogin = !this.loginSvc.isSessionActive();
+    console.log("LoginComponent - really show Login? " + this.showLogin);
+
   }
 
-  login(): void {
-    this._router.navigate(['/workouts']);
-  }
-  signup(): void {
-    this._router.navigate(['/signup']);
-  }
+  
 }

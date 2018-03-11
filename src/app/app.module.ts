@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -19,6 +20,10 @@ import { WorkoutTrackComponent } from './workouts/workout-track.component';
 import { ReportComponent } from './reports/report.component';
 import { WorkoutListTransactionsComponent } from './workouts/workout-list-transactions.component';
 import { WorkoutService } from './workouts/workout.service';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './login/login.service';
+import { UserService } from './shared/user.service';
+import { BaseUrlService } from './shared/base-url.service';
 
 
 @NgModule({
@@ -30,11 +35,13 @@ import { WorkoutService } from './workouts/workout.service';
     UserRegisterComponent,
     WorkoutTrackComponent,
     ReportComponent,
-    WorkoutListTransactionsComponent
+    WorkoutListTransactionsComponent,
+    LoginComponent
 
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -52,7 +59,7 @@ import { WorkoutService } from './workouts/workout.service';
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot()
   ],
-  providers: [WorkoutService],
+  providers: [WorkoutService, LoginService, UserService, BaseUrlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

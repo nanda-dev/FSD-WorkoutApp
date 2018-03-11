@@ -11,6 +11,8 @@
 					<li class="nav-item"><a class="nav-link" [routerLink]="['/workouts']">My Workouts</a></li>
 					<!--<li class="nav-item"><a class="nav-link" [routerLink]="['/track']">Track Workout</a></li>-->
 					<li class="nav-item"><a class="nav-link" [routerLink]="['/report']">Burn-Out Report</a></li>
+					<li class="nav-item" *ngIf='showLogout'><button type="button" class="btn btn-link" (click)='doLogout()'>Logout</button></li>
+					
 				</ul>
 			</div>
 		</nav>
