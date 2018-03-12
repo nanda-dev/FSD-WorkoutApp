@@ -32,6 +32,9 @@ export class WorkoutListComponent implements OnInit {
       }
       
     }
+    else{
+      this._router.navigate(['/login']);
+    }
     
   }
 

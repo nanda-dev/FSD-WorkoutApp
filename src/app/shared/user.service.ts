@@ -10,12 +10,14 @@ import 'rxjs/add/observable/of';
 
 import { IUser } from './IUser';
 import { BaseUrlService } from '../shared/base-url.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class UserService {
   baseUrl: string = "";
   sessionActive: boolean = true;
   activeUser: IUser;
+  private loggedIn = new BehaviorSubject<boolean>(false);
   
 
   constructor(private http: Http,
@@ -63,6 +65,10 @@ export class UserService {
 
   getLoggedInUser(): IUser {
     return this.activeUser;
+  }
+
+  isLoggedIn(): Observable<boolean>{
+    return this.loggedIn.asObservable();
   }
 
   private extractData(response: Response) {

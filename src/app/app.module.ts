@@ -14,7 +14,6 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 import { AppComponent } from './app.component';
-import { WelcomeComponent } from './welcome/welcome.component';
 import { WorkoutListComponent } from './workouts/workout-list.component';
 import { WorkoutAddComponent } from './workouts/workout-add.component';
 import { UserRegisterComponent } from './user/user-register.component';
@@ -28,12 +27,12 @@ import { UserService } from './shared/user.service';
 import { BaseUrlService } from './shared/base-url.service';
 import { ConvertFromSecondsPipe } from './shared/convert-from-seconds.pipe';
 import { WorkoutNameMapperPipe } from './shared/workout-name-mapper.pipe';
+import { NavGuardService } from './shared/nav-guard.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    WelcomeComponent,
+    AppComponent,    
     WorkoutListComponent,
     WorkoutAddComponent,
     UserRegisterComponent,
@@ -43,7 +42,6 @@ import { WorkoutNameMapperPipe } from './shared/workout-name-mapper.pipe';
     LoginComponent,
     ConvertFromSecondsPipe,
     WorkoutNameMapperPipe
-
   ],
   imports: [
     BrowserModule,
@@ -52,20 +50,20 @@ import { WorkoutNameMapperPipe } from './shared/workout-name-mapper.pipe';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {path: 'welcome', component: WelcomeComponent},
+      {path: 'login', component: LoginComponent},
       {path: 'signup', component: UserRegisterComponent},
       {path: 'workouts', component: WorkoutListComponent},
       {path: 'addworkout', component: WorkoutAddComponent},
       {path: 'transactions/:id', component: WorkoutListTransactionsComponent},
       {path: 'track/:id', component: WorkoutTrackComponent},
       {path: 'report', component: ReportComponent},
-      {path: '', redirectTo: 'welcome', pathMatch: 'full'},
-      {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
+      {path: '', redirectTo: 'login', pathMatch: 'full'},
+      {path: '**', redirectTo: 'login', pathMatch: 'full'}
     ]),
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot()
   ],
-  providers: [WorkoutService, LoginService, UserService, BaseUrlService, DatePipe],
+  providers: [WorkoutService, LoginService, UserService, BaseUrlService, DatePipe, NavGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

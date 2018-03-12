@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { WorkoutService } from '../workouts/workout.service';
 import { IWorkoutTransaction } from '../workouts/IWorkoutTransaction';
 import { error } from 'selenium-webdriver';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-report',
@@ -18,11 +19,16 @@ export class ReportComponent implements OnInit {
   errMessage: string;
 
   constructor(private _router: Router,
+              private userSvc: UserService,
               private workoutSvc: WorkoutService,
               private fb: FormBuilder,
               private dp: DatePipe) { }
 
   ngOnInit() {
+    console.log("User Logged in ? " + this.userSvc.isSessionActive());
+    if(!this.userSvc.isSessionActive()){
+      this._router.navigate(['/login']);
+    }
     this.reportForm = this.fb.group({
       dateRange: [[], [Validators.required]]	  
     });

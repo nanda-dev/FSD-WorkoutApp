@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     private userSvc: UserService) { }
 
   ngOnInit() {
+    this.userSvc.doLogout();
     this.loginForm = this.fb.group({
       userName: ['', [Validators.required, Validators.minLength(3)]],
       password: ''
