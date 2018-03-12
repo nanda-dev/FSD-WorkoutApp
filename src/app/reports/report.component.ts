@@ -33,6 +33,7 @@ export class ReportComponent implements OnInit {
       + "\nAlso: " + this.dp.transform(this.reportForm.controls['dateRange'].value[0], 'yyyy-MM-dd 00:00:00'));
     console.log("End Date:" + this.reportForm.controls['dateRange'].value[1]
       + "\nAlso: " + this.dp.transform(this.reportForm.controls['dateRange'].value[1], 'yyyy-MM-dd 11:59:59'));
+    
     let req = {};
     req['startTime'] = this.dp.transform(this.reportForm.controls['dateRange'].value[0], 'yyyy-MM-dd 00:00:00');
     req['endTime'] = this.dp.transform(this.reportForm.controls['dateRange'].value[1], 'yyyy-MM-dd 00:00:00');

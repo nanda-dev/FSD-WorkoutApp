@@ -36,5 +36,6 @@ export class WorkoutAddComponent implements OnInit {
     });
     
   }
+  
 
 }

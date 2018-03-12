@@ -3,7 +3,7 @@
     <div class="card">
       <h5 class="card-header">Track: {{workoutName}}</h5>
       <div class="card-body">
-        <form>
+        <form [formGroup]="transactionForm" (ngSubmit)="trackWorkout()">
 
           <!--<div class="form-group">
             <div class="input-group mb-3">
@@ -26,22 +26,23 @@
 
           <div class="form-group">
             <label for="workoutDate">Select Date </label>
-            <input type="text" class="form-control col-md-6" placeholder="Date" bsDatepicker formControlName="workoutDate" id="workoutDate"
+            <input type="text" class="form-control col-md-6" placeholder="Date" 
+              bsDatepicker formControlName="workoutDate" id="workoutDate"
             />
           </div>
           <!-- col-xs-12 col-12 col-sm-6 col-md-4  -->
           <div class="form-group">
             <label for="workoutStartTime">Start Time </label>
-            <timepicker [showMinutes]="true" [showSeconds]="true" id="workoutStartTime"></timepicker>
+            <timepicker [showMinutes]="showMin" [showSeconds]="showSec" [(ngModel)]='startTime' id="workoutStartTime" 
+            formControlName="startTime"></timepicker>
           </div>
           <div class="form-group">
             <label for="workoutEndTime">End Time </label>
-            <timepicker [showMinutes]="true" [showSeconds]="true" id="workoutEndTime"></timepicker>
+            <timepicker [showMinutes]="showMin" [showSeconds]="showSec" [(ngModel)]='endTime' id="workoutEndTime" 
+            formControlName="endTime"></timepicker>
           </div>
-
-
-        </form>
-        <button class="btn btn-outline-primary" class="btn btn-primary" (click)='trackWorkout()'>Save</button>
+          <button class="btn btn-primary">Save</button>
+        </form>        
       </div>
     </div>
   </div>

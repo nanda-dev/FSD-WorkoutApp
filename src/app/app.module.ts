@@ -27,6 +27,7 @@ import { LoginService } from './login/login.service';
 import { UserService } from './shared/user.service';
 import { BaseUrlService } from './shared/base-url.service';
 import { ConvertFromSecondsPipe } from './shared/convert-from-seconds.pipe';
+import { WorkoutNameMapperPipe } from './shared/workout-name-mapper.pipe';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ConvertFromSecondsPipe } from './shared/convert-from-seconds.pipe';
     ReportComponent,
     WorkoutListTransactionsComponent,
     LoginComponent,
-    ConvertFromSecondsPipe
+    ConvertFromSecondsPipe,
+    WorkoutNameMapperPipe
 
   ],
   imports: [
@@ -55,7 +57,7 @@ import { ConvertFromSecondsPipe } from './shared/convert-from-seconds.pipe';
       {path: 'workouts', component: WorkoutListComponent},
       {path: 'addworkout', component: WorkoutAddComponent},
       {path: 'transactions/:id', component: WorkoutListTransactionsComponent},
-      {path: 'track', component: WorkoutTrackComponent},
+      {path: 'track/:id', component: WorkoutTrackComponent},
       {path: 'report', component: ReportComponent},
       {path: '', redirectTo: 'welcome', pathMatch: 'full'},
       {path: '**', redirectTo: 'welcome', pathMatch: 'full'}

@@ -77,6 +77,17 @@ export class WorkoutService {
             .catch(this.handleError);
   }
 
+  addWorkoutTransaction(txn: IWorkoutTransaction) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    txn.id = undefined;
+    console.log("Sending WorkoutTxn: " + JSON.stringify(txn));
+    return this.http.post(this.workoutTxnUrl, txn, options)
+            .map(this.extractData)
+            .do(data => console.log('createdWorkoutTxn: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+  }
+
   getWorkoutName(workoutId: number) {
     return this.workoutMap[workoutId];
   }

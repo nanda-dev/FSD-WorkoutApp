@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+
+import { WorkoutService } from './workout.service';
+import { IWorkoutTransaction } from './IWorkoutTransaction';
 
 @Component({
   selector: 'app-workout-track',
@@ -7,15 +12,79 @@ import { Router } from '@angular/router';
   styleUrls: ['./workout-track.component.css']
 })
 export class WorkoutTrackComponent implements OnInit {
-  workoutName: string = "Bench Press";
+  workoutName: string;
+  workoutId: number;
+  transactionForm: FormGroup;
+
+  showMin: boolean = true;
+  showSec: boolean = true;
+
+  startTime: Date;
+  endTime: Date;
   
-  constructor(private _route: Router) { }
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private workoutSvc: WorkoutService,
+              private fb: FormBuilder,
+              private dp: DatePipe) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.workoutId = +params['id'];      
+    });
+
+    this.workoutName = this.workoutSvc.getWorkoutName(this.workoutId);
+
+    let now = new Date();
+
+    this.transactionForm = this.fb.group({
+      workoutDate: [now, [Validators.required]],
+      startTime: undefined,
+      endTime: undefined,
+      workoutId: undefined,
+      duration: undefined,
+      calsBurnt: undefined	  
+    });
   }
 
   trackWorkout(): void {
-    this._route.navigate(['/workouts']);
+    let workoutDate = this.transactionForm.controls['workoutDate'].value;
+    
+    console.log("WorkoutDate: " + this.dp.transform(workoutDate, 'yyyy-MM-dd'));
+    console.log("startDate: " + this.dp.transform(this.startTime, 'HH:mm:ss'));
+    console.log("endDate: " + this.dp.transform(this.endTime, 'HH:mm:ss'));
+
+    console.log("endTime.h=" + this.endTime.getHours() + ", startTime.h=" + this.startTime.getHours());
+    if(this.endTime.getHours() < this.startTime.getHours()){
+      console.log("End time cannot be greater than start time.");
+      this.endTime.setHours(this.startTime.getHours());
+      
+    }
+
+    var txn: IWorkoutTransaction = {
+      id: undefined,
+      workoutId: this.workoutId,
+      startTime: this.dp.transform(workoutDate, 'yyyy-MM-dd') 
+                  + ' ' 
+                  + this.dp.transform(this.startTime, 'HH:mm:ss'),
+      endTime: this.dp.transform(workoutDate, 'yyyy-MM-dd') 
+                + ' ' 
+                + this.dp.transform(this.endTime, 'HH:mm:ss'),
+      duration: undefined,
+      calsBurnt: undefined
+    };
+        
+    console.log("req.s=" + txn['startTime']);
+    console.log("req.e=" + txn['endTime']);
+
+    this.workoutSvc.addWorkoutTransaction(txn).subscribe(resp => {
+      console.log("Add Workout Transaction Respone: " + resp);
+      this.router.navigate(['/transactions', this.workoutId]);
+    });
+
+    
   }
+
+  
 
 }

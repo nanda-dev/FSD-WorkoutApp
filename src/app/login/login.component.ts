@@ -34,8 +34,7 @@ export class LoginComponent implements OnInit {
     u.name = u.userName;
     delete u['userName'];
     console.log("loginUser: " + JSON.stringify(u));
-    this.userSvc.doLogin(u).subscribe(resp => {
-      
+    this.userSvc.doLogin(u).subscribe(resp => {      
       console.log("Log-in response:" + JSON.stringify(resp));
       this._router.navigate(['/workouts']);
     }, error => console.log("Error during login" + <any>error));

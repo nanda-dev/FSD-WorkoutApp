@@ -37,7 +37,7 @@ export class WorkoutListTransactionsComponent implements OnInit {
   }
 
   trackNewActivity(): void {
-    this._router.navigate(['/track']);
+    this._router.navigate(['/track', this.workoutId]);
   }
 
   getWorkout(workoutId: number): any {
