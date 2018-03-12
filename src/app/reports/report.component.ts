@@ -42,7 +42,7 @@ export class ReportComponent implements OnInit {
     
     let req = {};
     req['startTime'] = this.dp.transform(this.reportForm.controls['dateRange'].value[0], 'yyyy-MM-dd 00:00:00');
-    req['endTime'] = this.dp.transform(this.reportForm.controls['dateRange'].value[1], 'yyyy-MM-dd 00:00:00');
+    req['endTime'] = this.dp.transform(this.reportForm.controls['dateRange'].value[1], 'yyyy-MM-dd 11:59:59');
 
     this.workoutSvc.getWorkoutTransactionsReport(req).subscribe(
       resp => this.transactionsReport = resp,
