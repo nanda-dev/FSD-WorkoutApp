@@ -31,7 +31,7 @@
                     </thead>
                     <tbody>
                       <tr *ngFor='let t of transactionsReport'>
-                        <th scope="row">{{t.startTime | date:'yyyy-MM-dd'}}</th>
+                        <th scope="row">{{t.startTime | date:'dd-MMM-yy'}}</th>
                         <td>{{t.workoutId | workoutNameMapper}}</td>
                         <td>{{t.startTime | date:'HH:mm:ss'}}</td>
                         <td>{{t.endTime | date:'HH:mm:ss'}}</td>

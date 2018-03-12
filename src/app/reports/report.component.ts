@@ -5,7 +5,6 @@ import { DatePipe } from '@angular/common';
 
 import { WorkoutService } from '../workouts/workout.service';
 import { IWorkoutTransaction } from '../workouts/IWorkoutTransaction';
-import { error } from 'selenium-webdriver';
 import { UserService } from '../shared/user.service';
 
 @Component({
