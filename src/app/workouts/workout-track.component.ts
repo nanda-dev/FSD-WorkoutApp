@@ -92,8 +92,10 @@ export class WorkoutTrackComponent implements OnInit {
 
   onEditStartTime() {
     this.isEndTimeDisabled = !this.isEndTimeDisabled;
-    this.endTime = this.startTime;
-    this.endTime.setHours(this.startTime.getHours() + 1);
+    if(this.startTime != null){
+      this.endTime = this.startTime;
+      this.endTime.setHours(this.startTime.getHours() + 1);
+    }
   }
 
   isValidStartTime(event: boolean): void {
