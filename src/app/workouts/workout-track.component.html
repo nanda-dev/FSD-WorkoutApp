@@ -5,25 +5,6 @@
       <div class="card-body">
         <form [formGroup]="transactionForm" (ngSubmit)="trackWorkout()">
 
-          <!--<div class="form-group">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <label class="input-group-text" for="selectWorkout">Workout</label>
-              </div>
-              <select class="custom-select" id="selectWorkout">
-                <option selected>Choose...</option>
-                <option value="1001">Squat</option>
-                <option value="1002">Press</option>
-                <option value="1003">Row</option>
-              </select>
-            </div>
-          </div>-->          
-
-          <!--<div class="form-group">
-            <label for="workoutDate">Date</label>
-            <input type="text" class="form-control" id="workoutDate">
-          </div>-->
-
           <div class="form-group">
             <label for="workoutDate">Select Date </label>
             <input type="text" class="form-control col-md-6" placeholder="Date" 
@@ -33,15 +14,15 @@
           <!-- col-xs-12 col-12 col-sm-6 col-md-4  -->
           <div class="form-group">
             <label for="workoutStartTime">Start Time </label>
-            <timepicker [showMinutes]="showMin" [showSeconds]="showSec" [(ngModel)]='startTime' id="workoutStartTime" 
-            formControlName="startTime"></timepicker>
+            <timepicker [hourStep]="hstep" [showMinutes]="showMin" [showSeconds]="showSec" [(ngModel)]='startTime' id="workoutStartTime" 
+            formControlName="startTime" (click)='onEditStartTime()' (isValid)="isValidStartTime($event)"></timepicker>
           </div>
           <div class="form-group">
             <label for="workoutEndTime">End Time </label>
-            <timepicker [showMinutes]="showMin" [showSeconds]="showSec" [(ngModel)]='endTime' id="workoutEndTime" 
-            formControlName="endTime"></timepicker>
+            <timepicker [hourStep]="hstep" [showMinutes]="showMin" [showSeconds]="showSec" [(ngModel)]='endTime' id="workoutEndTime" 
+            formControlName="endTime" [readonlyInput]="isEndTimeDisabled" (isValid)="isValidEndTime($event)"></timepicker>
           </div>
-          <button class="btn btn-primary">Save</button>
+          <button class="btn btn-primary" type="submit" [disabled]="!transactionForm.valid || !validStartTime || !validEndTime">Save</button>
         </form>        
       </div>
     </div>

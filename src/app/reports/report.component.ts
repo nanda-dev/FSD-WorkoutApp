@@ -46,7 +46,6 @@ export class ReportComponent implements OnInit {
 
     this.workoutSvc.getWorkoutTransactionsReport(req).subscribe(
       resp => this.transactionsReport = resp,
-      error => this.errMessage = <any>error);
-      //this._router.navigate(['/report']);
+      error => this.errMessage = <any>error);      
   }
 }
