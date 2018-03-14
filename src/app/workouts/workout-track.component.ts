@@ -100,12 +100,12 @@ export class WorkoutTrackComponent implements OnInit {
 
   isValidStartTime(event: boolean): void {
     this.validStartTime = event;
-    console.log("Valid start time?" + this.validStartTime);
+    console.log("Valid start time? " + this.validStartTime);
   }
 
   isValidEndTime(event: boolean): void {
     this.validEndTime = event;
-    console.log("Valid end time?" + this.validEndTime);
+    console.log("Valid end time? " + this.validEndTime);
   }
   
 

@@ -15,12 +15,12 @@
           <div class="form-group">
             <label for="workoutStartTime">Start Time </label>
             <timepicker [hourStep]="hstep" [showMinutes]="showMin" [showSeconds]="showSec" [(ngModel)]='startTime' id="workoutStartTime" 
-            formControlName="startTime" (click)='onEditStartTime()' (isValid)="isValidStartTime($event)"></timepicker>
+            formControlName="startTime" (isValid)="isValidStartTime($event)"></timepicker>
           </div>
           <div class="form-group">
             <label for="workoutEndTime">End Time </label>
             <timepicker [hourStep]="hstep" [showMinutes]="showMin" [showSeconds]="showSec" [(ngModel)]='endTime' id="workoutEndTime" 
-            formControlName="endTime" [readonlyInput]="isEndTimeDisabled" (isValid)="isValidEndTime($event)"></timepicker>
+            formControlName="endTime" (isValid)="isValidEndTime($event)"></timepicker>
           </div>
           <button class="btn btn-primary" type="submit" [disabled]="!transactionForm.valid || !validStartTime || !validEndTime">Save</button>
         </form>        
