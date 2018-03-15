@@ -48,12 +48,13 @@ export class WorkoutService {
       .catch(this.handleError);    
   }
 
-  getWorkoutTransactionsReport(req: any): Observable<IWorkoutTransaction[]>{
+  getWorkoutTransactionsReport(userId: number, req: any): Observable<IWorkoutTransaction[]>{
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    
-    console.log("Sending Workout Report Req: " + JSON.stringify(req));
-    return this.http.post(this.workoutTxnReportUrl, req, options)
+    let url = this.workoutTxnReportUrl + `/${userId}`;
+    console.log("ReportURL=" + url);
+    console.log("User [" + userId + "] Sending Workout Report Req: " + JSON.stringify(req));
+    return this.http.post(url, req, options)
             .map(this.extractData)
             .do(data => console.log('retrievedReport: ' + JSON.stringify(data)))
             .catch(this.handleError); 
