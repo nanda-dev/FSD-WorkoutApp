@@ -24,23 +24,25 @@ export class UserRegisterComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required]],
       rePassword: ['',[Validators.required]]		  
-    });
+    }, this.passwordMatchValidator);
   }
 
   userSignup(): void {
     let u = Object.assign({}, this.user, this.registrationForm.value);
     this.userSvc.registerUser(u)
 				.subscribe(resp => {
-					console.log('API Resp:' + JSON.stringify(resp));
+					console.log('Signup API Resp:' + JSON.stringify(resp));
 					this.resetForm();
 					this._router.navigate(['/welcome']);																
 				},
-				error => this.errorMessage = <any>error);
-    
+				error => this.errorMessage = <any>error);    
   }
 
   resetForm(): void {
-		this.registrationForm.reset();
-				
+		this.registrationForm.reset();				
+  }
+
+  passwordMatchValidator(fg: FormGroup): {} | null {
+    return fg.get('password').value === fg.get('rePassword').value ? null : { 'mismatch': true };
   }
 }

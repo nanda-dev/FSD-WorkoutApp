@@ -11,7 +11,7 @@ import { IWorkoutTransaction } from './IWorkoutTransaction';
   templateUrl: './workout-track.component.html',
   styleUrls: ['./workout-track.component.css']
 })
-export class WorkoutTrackComponent implements OnInit {
+export class WorkoutTrackComponent implements OnInit {  
   workoutName: string;
   workoutId: number;
   transactionForm: FormGroup;
@@ -21,6 +21,12 @@ export class WorkoutTrackComponent implements OnInit {
 
   startTime: Date;
   endTime: Date;
+
+  hstep: number = 1;
+  minEndTime: Date;
+  isEndTimeDisabled: boolean = true;
+  validStartTime: boolean;
+  validEndTime: boolean;
   
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -81,10 +87,26 @@ export class WorkoutTrackComponent implements OnInit {
       console.log("Add Workout Transaction Respone: " + resp);
       this.router.navigate(['/transactions', this.workoutId]);
     });
-
     
   }
 
+  onEditStartTime() {
+    this.isEndTimeDisabled = !this.isEndTimeDisabled;
+    if(this.startTime != null){
+      this.endTime = this.startTime;
+      this.endTime.setHours(this.startTime.getHours() + 1);
+    }
+  }
+
+  isValidStartTime(event: boolean): void {
+    this.validStartTime = event;
+    console.log("Valid start time? " + this.validStartTime);
+  }
+
+  isValidEndTime(event: boolean): void {
+    this.validEndTime = event;
+    console.log("Valid end time? " + this.validEndTime);
+  }
   
 
 }

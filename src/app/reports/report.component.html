@@ -9,7 +9,7 @@
             <label for="dateRange" class="col-form-label">Select Dates</label>
             <input type="text" class="form-control col-md-6" placeholder="Date Range" 
               bsDaterangepicker formControlName="dateRange" id="dateRange"/>
-            <button class="btn btn-outline-primary" >Get Report</button>
+            <button class="btn btn-outline-primary" [disabled]="!reportForm.valid">Get Report</button>
           </div>
 
         </form>

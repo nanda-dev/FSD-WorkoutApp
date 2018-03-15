@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     this.userSvc.doLogout();
     this.loginForm = this.fb.group({
       userName: ['', [Validators.required, Validators.minLength(3)]],
-      password: ''
+      password: ['', [Validators.required]]
     });
     
   }
