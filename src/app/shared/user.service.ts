@@ -67,6 +67,10 @@ export class UserService {
     return this.activeUser;
   }
 
+  getLoggedInUserId(): number {
+    return this.activeUser ? this.activeUser.id : 0;
+  }
+
   isLoggedIn(): Observable<boolean>{
     return this.loggedIn.asObservable();
   }
